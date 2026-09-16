@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Hospital Admin Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>🏥 Hospital</h2>
+
+        <p class="admin-title">Admin Panel</p>
+
+        <nav>
+
+            <a href="index.html">Dashboard</a>
+
+            <a href="patients.html">Patients</a>
+
+            <a href="doctors.html">Doctors</a>
+
+            <a href="appointments.html">Appointments</a>
+
+            <a href="medicines.html">Medicines</a>
+
+            <a href="billing.html">Billing</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <div class="top-bar">
+
+            <div>
+
+                <h1>Dashboard</h1>
+
+                <p>Hospital Management System</p>
+
+            </div>
+
+            <button>Admin</button>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <h3>Patients</h3>
+
+                <p id="patientCount">0</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Doctors</h3>
+
+                <p id="doctorCount">0</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Appointments</h3>
+
+                <p id="appointmentCount">0</p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Medicines</h3>
+
+                <p id="medicineCount">0</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="management">
+
+            <h2>Quick Actions</h2>
+
+            <p>Select a section to manage hospital information.</p>
+
+
+            <div class="quick-actions">
+
+                <a href="patients.html">
+                    👤 Manage Patients
+                </a>
+
+                <a href="doctors.html">
+                    👨‍⚕️ Manage Doctors
+                </a>
+
+                <a href="appointments.html">
+                    📅 Manage Appointments
+                </a>
+
+                <a href="medicines.html">
+                    💊 Manage Medicines
+                </a>
+
+                <a href="billing.html">
+                    💰 Manage Billing
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECENT PATIENTS -->
+
+        <section class="management patient-list">
+
+            <h2>Recent Patients</h2>
+
+            <div id="recentPatients">
+
+                <p>Loading patients...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    const API = "http://localhost:3000";
+
+
+    // ================= DASHBOARD DATA =================
+
+    function loadDashboard() {
+
+        fetch(API + "/dashboard")
+
+            .then(response => response.json())
+
+            .then(data => {
+
+                document.getElementById("patientCount").textContent =
+                    data.patients;
+
+                document.getElementById("doctorCount").textContent =
+                    data.doctors;
+
+                document.getElementById("appointmentCount").textContent =
+                    data.appointments;
+
+                document.getElementById("medicineCount").textContent =
+                    data.medicines;
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error loading dashboard:",
+                    error
+                );
+
+            });
+
+    }
+
+
+    // ================= RECENT PATIENTS =================
+
+    function loadPatients() {
+
+        fetch(API + "/patients")
+
+            .then(response => response.json())
+
+            .then(patients => {
+
+                const container =
+                    document.getElementById("recentPatients");
+
+                container.innerHTML = "";
+
+                if (patients.length === 0) {
+
+                    container.innerHTML =
+                        "<p>No patients added yet.</p>";
+
+                    return;
+
+                }
+
+
+                patients.forEach(patient => {
+
+                    container.innerHTML += `
+
+                        <div class="patient-item">
+
+                            <strong>${patient.name}</strong>
+
+                            <span>
+                                Age: ${patient.age}
+                            </span>
+
+                            <span>
+                                Disease: ${patient.disease}
+                            </span>
+
+                        </div>
+
+                    `;
+
+                });
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error loading patients:",
+                    error
+                );
+
+            });
+
+    }
+
+
+    // ================= START =================
+
+    loadDashboard();
+
+    loadPatients();
+
+</script>
+```
+
+</body>
+
+</html>

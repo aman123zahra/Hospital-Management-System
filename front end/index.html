@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <h1>🏥 Hospital Management System</h1>
+    </header>
+
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+
+        <a href="#" onclick="showSection('patients')">Patients</a>
+
+        <a href="#" onclick="showSection('doctors')">Doctors</a>
+
+        <a href="#" onclick="showSection('appointments')">Appointments</a>
+
+        <a href="#" onclick="showSection('medicines')">Medicines</a>
+
+        <a href="#" onclick="showSection('billing')">Billing</a>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page-section">
+
+            <h2>Dashboard</h2>
+
+            <p class="subtitle">
+                Welcome to the Hospital Management System
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <h3>Patients</h3>
+                    <p id="patientCount">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Doctors</h3>
+                    <p id="doctorCount">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Appointments</h3>
+                    <p id="appointmentCount">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Medicines</h3>
+                    <p id="medicineCount">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PATIENTS ================= -->
+
+        <section id="patients" class="page-section hidden">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Patients</h2>
+                    <p class="subtitle">Manage hospital patients</p>
+                </div>
+
+                <button class="add-btn" onclick="showPatientForm()">
+                    + Add New Patient
+                </button>
+
+            </div>
+
+
+            <!-- PATIENT FORM -->
+
+            <div id="patientForm" class="form-box hidden">
+
+                <input type="text" id="patientName"
+                    placeholder="Patient Name">
+
+                <input type="number" id="patientAge"
+                    placeholder="Age">
+
+                <input type="text" id="patientDisease"
+                    placeholder="Disease">
+
+                <button class="add-btn" onclick="addPatient()">
+                    Save Patient
+                </button>
+
+            </div>
+
+
+            <h3 class="list-title">Patients List</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Disease</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="patientsTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DOCTORS ================= -->
+
+        <section id="doctors" class="page-section hidden">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Doctors</h2>
+                    <p class="subtitle">Manage hospital doctors</p>
+                </div>
+
+                <button class="add-btn" onclick="showDoctorForm()">
+                    + Add New Doctor
+                </button>
+
+            </div>
+
+
+            <div id="doctorForm" class="form-box hidden">
+
+                <input type="text" id="doctorName"
+                    placeholder="Doctor Name">
+
+                <input type="text" id="doctorSpecialization"
+                    placeholder="Specialization">
+
+                <button class="add-btn" onclick="addDoctor()">
+                    Save Doctor
+                </button>
+
+            </div>
+
+
+            <h3 class="list-title">Doctors List</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="doctorsTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= APPOINTMENTS ================= -->
+
+        <section id="appointments" class="page-section hidden">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Appointments</h2>
+                    <p class="subtitle">Manage patient appointments</p>
+                </div>
+
+                <button class="add-btn" onclick="showAppointmentForm()">
+                    + Add Appointment
+                </button>
+
+            </div>
+
+
+            <div id="appointmentForm" class="form-box hidden">
+
+                <input type="text" id="appointmentPatient"
+                    placeholder="Patient Name">
+
+                <input type="text" id="appointmentDoctor"
+                    placeholder="Doctor Name">
+
+                <input type="date" id="appointmentDate">
+
+                <input type="time" id="appointmentTime">
+
+                <button class="add-btn" onclick="addAppointment()">
+                    Save Appointment
+                </button>
+
+            </div>
+
+
+            <h3 class="list-title">Appointments List</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="appointmentsTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MEDICINES ================= -->
+
+        <section id="medicines" class="page-section hidden">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Medicines</h2>
+                    <p class="subtitle">Manage hospital medicines</p>
+                </div>
+
+                <button class="add-btn" onclick="showMedicineForm()">
+                    + Add New Medicine
+                </button>
+
+            </div>
+
+
+            <div id="medicineForm" class="form-box hidden">
+
+                <input type="text" id="medicineName"
+                    placeholder="Medicine Name">
+
+                <input type="number" id="medicineQuantity"
+                    placeholder="Quantity">
+
+                <input type="number" id="medicinePrice"
+                    placeholder="Price">
+
+                <button class="add-btn" onclick="addMedicine()">
+                    Save Medicine
+                </button>
+
+            </div>
+
+
+            <h3 class="list-title">Medicine List</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="medicinesTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= BILLING ================= -->
+
+        <section id="billing" class="page-section hidden">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Billing</h2>
+                    <p class="subtitle">Manage patient bills</p>
+                </div>
+
+                <button class="add-btn" onclick="showBillingForm()">
+                    + Create Bill
+                </button>
+
+            </div>
+
+
+            <div id="billingForm" class="form-box hidden">
+
+                <input type="text" id="billPatient"
+                    placeholder="Patient Name">
+
+                <input type="number" id="billAmount"
+                    placeholder="Amount">
+
+                <select id="billStatus">
+
+                    <option value="Pending">Pending</option>
+
+                    <option value="Paid">Paid</option>
+
+                </select>
+
+                <button class="add-btn" onclick="addBill()">
+                    Save Bill
+                </button>
+
+            </div>
+
+
+            <h3 class="list-title">Bills List</h3>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="billingTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const API = "http://localhost:3000";
+
+
+        // ---------- SECTION NAVIGATION ----------
+
+        function showSection(section) {
+
+            document.querySelectorAll(".page-section")
+                .forEach(page => page.classList.add("hidden"));
+
+            document.getElementById(section)
+                .classList.remove("hidden");
+
+            if (section === "dashboard") loadDashboard();
+            if (section === "patients") loadPatients();
+            if (section === "doctors") loadDoctors();
+            if (section === "appointments") loadAppointments();
+            if (section === "medicines") loadMedicines();
+            if (section === "billing") loadBills();
+        }
+
+
+        // ---------- DASHBOARD ----------
+
+        async function loadDashboard() {
+
+            const response = await fetch(API + "/dashboard");
+
+            const data = await response.json();
+
+            document.getElementById("patientCount").textContent =
+                data.patients;
+
+            document.getElementById("doctorCount").textContent =
+                data.doctors;
+
+            document.getElementById("appointmentCount").textContent =
+                data.appointments;
+
+            document.getElementById("medicineCount").textContent =
+                data.medicines;
+        }
+
+
+        // ---------- PATIENTS ----------
+
+        async function loadPatients() {
+
+            const response = await fetch(API + "/patients");
+
+            const patients = await response.json();
+
+            const table = document.getElementById("patientsTable");
+
+            table.innerHTML = "";
+
+            patients.forEach(patient => {
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${patient.id}</td>
+                        <td>${patient.name}</td>
+                        <td>${patient.age}</td>
+                        <td>${patient.disease}</td>
+
+                        <td>
+                            <button
+                                class="delete-btn"
+                                onclick="deletePatient(${patient.id})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+
+        function showPatientForm() {
+
+            document.getElementById("patientForm")
+                .classList.toggle("hidden");
+        }
+
+
+        async function addPatient() {
+
+            const name =
+                document.getElementById("patientName").value;
+
+            const age =
+                document.getElementById("patientAge").value;
+
+            const disease =
+                document.getElementById("patientDisease").value;
+
+            if (!name || !age || !disease) {
+
+                alert("Please fill all fields.");
+
+                return;
+            }
+
+            await fetch(API + "/patients", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name,
+                    age,
+                    disease
+                })
+            });
+
+            document.getElementById("patientName").value = "";
+            document.getElementById("patientAge").value = "";
+            document.getElementById("patientDisease").value = "";
+
+            document.getElementById("patientForm")
+                .classList.add("hidden");
+
+            loadPatients();
+            loadDashboard();
+        }
+
+
+        async function deletePatient(id) {
+
+            await fetch(API + "/patients/" + id, {
+                method: "DELETE"
+            });
+
+            loadPatients();
+            loadDashboard();
+        }
+
+
+        // ---------- DOCTORS ----------
+
+        async function loadDoctors() {
+
+            const response = await fetch(API + "/doctors");
+
+            const doctors = await response.json();
+
+            const table = document.getElementById("doctorsTable");
+
+            table.innerHTML = "";
+
+            doctors.forEach(doctor => {
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${doctor.id}</td>
+                        <td>${doctor.name}</td>
+                        <td>${doctor.specialization}</td>
+
+                        <td>
+                            <button
+                                class="delete-btn"
+                                onclick="deleteDoctor(${doctor.id})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+
+        function showDoctorForm() {
+
+            document.getElementById("doctorForm")
+                .classList.toggle("hidden");
+        }
+
+
+        async function addDoctor() {
+
+            const name =
+                document.getElementById("doctorName").value;
+
+            const specialization =
+                document.getElementById("doctorSpecialization").value;
+
+            if (!name || !specialization) {
+
+                alert("Please fill all fields.");
+
+                return;
+            }
+
+            await fetch(API + "/doctors", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name,
+                    specialization
+                })
+            });
+
+            document.getElementById("doctorName").value = "";
+            document.getElementById("doctorSpecialization").value = "";
+
+            document.getElementById("doctorForm")
+                .classList.add("hidden");
+
+            loadDoctors();
+            loadDashboard();
+        }
+
+
+        async function deleteDoctor(id) {
+
+            await fetch(API + "/doctors/" + id, {
+                method: "DELETE"
+            });
+
+            loadDoctors();
+            loadDashboard();
+        }
+
+
+        // ---------- APPOINTMENTS ----------
+
+        async function loadAppointments() {
+
+            const response = await fetch(API + "/appointments");
+
+            const appointments = await response.json();
+
+            const table =
+                document.getElementById("appointmentsTable");
+
+            table.innerHTML = "";
+
+            appointments.forEach(appointment => {
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${appointment.id}</td>
+                        <td>${appointment.patient}</td>
+                        <td>${appointment.doctor}</td>
+                        <td>${appointment.date}</td>
+                        <td>${appointment.time}</td>
+
+                        <td>
+                            <button
+                                class="delete-btn"
+                                onclick="deleteAppointment(${appointment.id})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+
+        function showAppointmentForm() {
+
+            document.getElementById("appointmentForm")
+                .classList.toggle("hidden");
+        }
+
+
+        async function addAppointment() {
+
+            const patient =
+                document.getElementById("appointmentPatient").value;
+
+            const doctor =
+                document.getElementById("appointmentDoctor").value;
+
+            const date =
+                document.getElementById("appointmentDate").value;
+
+            const time =
+                document.getElementById("appointmentTime").value;
+
+            if (!patient || !doctor || !date || !time) {
+
+                alert("Please fill all fields.");
+
+                return;
+            }
+
+            await fetch(API + "/appointments", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    patient,
+                    doctor,
+                    date,
+                    time
+                })
+            });
+
+            document.getElementById("appointmentPatient").value = "";
+            document.getElementById("appointmentDoctor").value = "";
+            document.getElementById("appointmentDate").value = "";
+            document.getElementById("appointmentTime").value = "";
+
+            document.getElementById("appointmentForm")
+                .classList.add("hidden");
+
+            loadAppointments();
+            loadDashboard();
+        }
+
+
+        async function deleteAppointment(id) {
+
+            await fetch(API + "/appointments/" + id, {
+                method: "DELETE"
+            });
+
+            loadAppointments();
+            loadDashboard();
+        }
+
+
+        // ---------- MEDICINES ----------
+
+        async function loadMedicines() {
+
+            const response = await fetch(API + "/medicines");
+
+            const medicines = await response.json();
+
+            const table =
+                document.getElementById("medicinesTable");
+
+            table.innerHTML = "";
+
+            medicines.forEach(medicine => {
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${medicine.id}</td>
+                        <td>${medicine.name}</td>
+                        <td>${medicine.quantity}</td>
+                        <td>${medicine.price}</td>
+
+                        <td>
+                            <button
+                                class="delete-btn"
+                                onclick="deleteMedicine(${medicine.id})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+
+        function showMedicineForm() {
+
+            document.getElementById("medicineForm")
+                .classList.toggle("hidden");
+        }
+
+
+        async function addMedicine() {
+
+            const name =
+                document.getElementById("medicineName").value;
+
+            const quantity =
+                document.getElementById("medicineQuantity").value;
+
+            const price =
+                document.getElementById("medicinePrice").value;
+
+            if (!name || !quantity || !price) {
+
+                alert("Please fill all fields.");
+
+                return;
+            }
+
+            await fetch(API + "/medicines", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name,
+                    quantity,
+                    price
+                })
+            });
+
+            document.getElementById("medicineName").value = "";
+            document.getElementById("medicineQuantity").value = "";
+            document.getElementById("medicinePrice").value = "";
+
+            document.getElementById("medicineForm")
+                .classList.add("hidden");
+
+            loadMedicines();
+            loadDashboard();
+        }
+
+
+        async function deleteMedicine(id) {
+
+            await fetch(API + "/medicines/" + id, {
+                method: "DELETE"
+            });
+
+            loadMedicines();
+            loadDashboard();
+        }
+
+
+        // ---------- BILLING ----------
+
+        async function loadBills() {
+
+            const response = await fetch(API + "/billing");
+
+            const bills = await response.json();
+
+            const table =
+                document.getElementById("billingTable");
+
+            table.innerHTML = "";
+
+            bills.forEach(bill => {
+
+                table.innerHTML += `
+                    <tr>
+                        <td>${bill.id}</td>
+                        <td>${bill.patient}</td>
+                        <td>${bill.amount}</td>
+                        <td>${bill.status}</td>
+
+                        <td>
+                            <button
+                                class="delete-btn"
+                                onclick="deleteBill(${bill.id})">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+
+        function showBillingForm() {
+
+            document.getElementById("billingForm")
+                .classList.toggle("hidden");
+        }
+
+
+        async function addBill() {
+
+            const patient =
+                document.getElementById("billPatient").value;
+
+            const amount =
+                document.getElementById("billAmount").value;
+
+            const status =
+                document.getElementById("billStatus").value;
+
+            if (!patient || !amount) {
+
+                alert("Please fill all fields.");
+
+                return;
+            }
+
+            await fetch(API + "/billing", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    patient,
+                    amount,
+                    status
+                })
+            });
+
+            document.getElementById("billPatient").value = "";
+            document.getElementById("billAmount").value = "";
+
+            document.getElementById("billingForm")
+                .classList.add("hidden");
+
+            loadBills();
+        }
+
+
+        async function deleteBill(id) {
+
+            await fetch(API + "/billing/" + id, {
+                method: "DELETE"
+            });
+
+            loadBills();
+        }
+
+
+        // ---------- START ----------
+
+        loadDashboard();
+
+    </script>
+
+</body>
+
+</html>

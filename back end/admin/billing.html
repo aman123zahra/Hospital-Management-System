@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Billing - Hospital Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>🏥 Hospital</h2>
+
+        <p class="admin-title">Admin Panel</p>
+
+        <nav>
+
+            <a href="/admin/index.html">Dashboard</a>
+
+            <a href="/admin/patients.html">Patients</a>
+
+            <a href="/admin/doctors.html">Doctors</a>
+
+            <a href="/admin/appointments.html">Appointments</a>
+
+            <a href="/admin/medicines.html">Medicines</a>
+
+            <a href="/admin/billing.html">Billing</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <div class="top-bar">
+
+            <div>
+
+                <h1>Billing</h1>
+
+                <p>Manage hospital bills</p>
+
+            </div>
+
+            <button>Admin</button>
+
+        </div>
+
+
+        <!-- ADD BILL -->
+
+        <section class="management">
+
+            <h2>Add New Bill</h2>
+
+            <form id="billingForm">
+
+                <input
+                    type="text"
+                    id="patient"
+                    placeholder="Patient Name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    required
+                >
+
+                <select id="status">
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Paid">
+                        Paid
+                    </option>
+
+                </select>
+
+                <button type="submit">
+                    Add Bill
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- BILL LIST -->
+
+        <section class="management">
+
+            <h2>Bill List</h2>
+
+            <table border="1" cellpadding="10" width="100%">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="billingTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- BILLING JAVASCRIPT -->
+
+<script src="/admin/billing.js"></script>
+
+</body>
+
+</html>

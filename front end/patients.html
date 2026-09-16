@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patients - Hospital Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Hospital Management System</h1>
+        <p>Patient Management</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="patients.html">Patients</a>
+        <a href="#">Doctors</a>
+        <a href="#">Appointments</a>
+        <a href="#">Medicines</a>
+        <a href="#">Billing</a>
+    </nav>
+
+    <main>
+
+        <h2>Patients</h2>
+
+        <div class="patient-form">
+
+            <h3>Add New Patient</h3>
+
+            <input type="text" id="patientName" placeholder="Patient Name">
+
+            <input type="number" id="patientAge" placeholder="Age">
+
+            <input type="text" id="patientDisease" placeholder="Disease">
+
+            <button onclick="addPatient()">Add Patient</button>
+
+        </div>
+
+        <h3>Patient List</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Disease</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="patientTable">
+
+            </tbody>
+
+        </table>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

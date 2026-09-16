@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medicines - Hospital Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>🏥 Hospital</h2>
+
+        <p class="admin-title">Admin Panel</p>
+
+        <nav>
+
+            <a href="/admin/index.html">Dashboard</a>
+
+            <a href="/admin/patients.html">Patients</a>
+
+            <a href="/admin/doctors.html">Doctors</a>
+
+            <a href="/admin/appointments.html">Appointments</a>
+
+            <a href="/admin/medicines.html">Medicines</a>
+
+            <a href="/admin/billing.html">Billing</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+
+        <div class="top-bar">
+
+            <div>
+
+                <h1>Medicines</h1>
+
+                <p>Manage hospital medicines</p>
+
+            </div>
+
+            <button>Admin</button>
+
+        </div>
+
+
+        <!-- ADD MEDICINE -->
+
+        <section class="management">
+
+            <h2>Add Medicine</h2>
+
+            <form id="medicineForm">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Medicine Name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="quantity"
+                    placeholder="Quantity"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="price"
+                    placeholder="Price"
+                    required
+                >
+
+                <button type="submit">
+                    Add Medicine
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- MEDICINE LIST -->
+
+        <section class="management">
+
+            <h2>Medicine List</h2>
+
+            <table border="1" cellpadding="10" width="100%">
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Medicine</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="medicineTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MEDICINES JAVASCRIPT -->
+
+<script src="/admin/medicines.js"></script>
+
+</body>
+
+</html>

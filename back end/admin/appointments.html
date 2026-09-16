@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Appointments - Hospital Management System</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+```
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>🏥 Hospital</h2>
+
+        <p class="admin-title">Admin Panel</p>
+
+        <nav>
+
+            <a href="index.html">Dashboard</a>
+
+            <a href="patients.html">Patients</a>
+
+            <a href="doctors.html">Doctors</a>
+
+            <a href="appointments.html">Appointments</a>
+
+            <a href="medicines.html">Medicines</a>
+
+            <a href="billing.html">Billing</a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <div class="top-bar">
+
+            <div>
+
+                <h1>Appointments</h1>
+
+                <p>Manage patient appointments</p>
+
+            </div>
+
+            <button>Admin</button>
+
+        </div>
+
+
+        <!-- ADD APPOINTMENT -->
+
+        <section class="management">
+
+            <h2>Add Appointment</h2>
+
+            <form id="appointmentForm">
+
+                <input
+                    type="text"
+                    id="patient"
+                    placeholder="Patient Name"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="doctor"
+                    placeholder="Doctor Name"
+                    required
+                >
+
+                <input
+                    type="date"
+                    id="date"
+                    required
+                >
+
+                <input
+                    type="time"
+                    id="time"
+                    required
+                >
+
+                <button type="submit">
+                    Add Appointment
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- APPOINTMENT LIST -->
+
+        <section class="management">
+
+            <h2>Appointment List</h2>
+
+            <table border="1" cellpadding="10" width="100%">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Patient</th>
+
+                        <th>Doctor</th>
+
+                        <th>Date</th>
+
+                        <th>Time</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="appointmentTable"></tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    const API = "http://localhost:3000";
+
+
+    // LOAD APPOINTMENTS
+
+    function loadAppointments() {
+
+        fetch(API + "/appointments")
+
+            .then(response => response.json())
+
+            .then(appointments => {
+
+                const table =
+                    document.getElementById("appointmentTable");
+
+                table.innerHTML = "";
+
+                appointments.forEach(appointment => {
+
+                    table.innerHTML += `
+
+                        <tr>
+
+                            <td>${appointment.id}</td>
+
+                            <td>${appointment.patient}</td>
+
+                            <td>${appointment.doctor}</td>
+
+                            <td>${appointment.date}</td>
+
+                            <td>${appointment.time}</td>
+
+                            <td>
+
+                                <button
+                                    onclick="deleteAppointment(${appointment.id})">
+                                    Delete
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                });
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error loading appointments:",
+                    error
+                );
+
+            });
+
+    }
+
+
+    // ADD APPOINTMENT
+
+    document
+        .getElementById("appointmentForm")
+        .addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const appointment = {
+
+                patient:
+                    document.getElementById("patient").value,
+
+                doctor:
+                    document.getElementById("doctor").value,
+
+                date:
+                    document.getElementById("date").value,
+
+                time:
+                    document.getElementById("time").value
+
+            };
+
+
+            fetch(API + "/appointments", {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type":
+                        "application/json"
+
+                },
+
+                body: JSON.stringify(appointment)
+
+            })
+
+            .then(response => response.json())
+
+            .then(() => {
+
+                document
+                    .getElementById("appointmentForm")
+                    .reset();
+
+                loadAppointments();
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error adding appointment:",
+                    error
+                );
+
+            });
+
+        });
+
+
+    // DELETE APPOINTMENT
+
+    function deleteAppointment(id) {
+
+        fetch(API + "/appointments/" + id, {
+
+            method: "DELETE"
+
+        })
+
+        .then(() => {
+
+            loadAppointments();
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Error deleting appointment:",
+                error
+            );
+
+        });
+
+    }
+
+
+    // INITIAL LOAD
+
+    loadAppointments();
+
+</script>
+```
+
+</body>
+
+</html>
