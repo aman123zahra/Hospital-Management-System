@@ -1,8 +1,7 @@
 const API = "http://localhost:3000";
 
-// ===============================
+
 // LOAD BILLS
-// ===============================
 
 function loadBills() {
 
@@ -41,9 +40,9 @@ function loadBills() {
 }
 
 
-// ===============================
+
 // ADD BILL
-// ===============================
+
 
 document
     .getElementById("billingForm")
@@ -92,9 +91,9 @@ document
     });
 
 
-// ===============================
+
 // DELETE BILL
-// ===============================
+
 
 function deleteBill(id) {
 
@@ -116,8 +115,7 @@ function deleteBill(id) {
 }
 
 
-// ===============================
+
 // START
-// ===============================
 
 loadBills();

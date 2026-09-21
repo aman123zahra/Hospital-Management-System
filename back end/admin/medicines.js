@@ -1,8 +1,8 @@
 const API = "http://localhost:3000";
 
-// ===============================
+
 // LOAD MEDICINES
-// ===============================
+
 
 function loadMedicines() {
 
@@ -38,11 +38,7 @@ function loadMedicines() {
         });
 }
 
-
-// ===============================
 // ADD MEDICINE
-// ===============================
-
 document
     .getElementById("medicineForm")
     .addEventListener("submit", function (e) {
@@ -87,9 +83,9 @@ document
     });
 
 
-// ===============================
+
 // DELETE MEDICINE
-// ===============================
+
 
 function deleteMedicine(id) {
 
@@ -111,8 +107,8 @@ function deleteMedicine(id) {
 }
 
 
-// ===============================
+
 // START
-// ===============================
+
 
 loadMedicines();

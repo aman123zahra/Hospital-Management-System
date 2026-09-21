@@ -10,7 +10,7 @@ body {
     color: #263238;
 }
 
-/* ================= HEADER ================= */
+/*Header*/
 
 .header {
     background: linear-gradient(135deg, #087f8c, #075f68);
@@ -24,7 +24,7 @@ body {
 }
 
 
-/* ================= NAVBAR ================= */
+/*  NAVBAR  */
 
 .navbar {
     background: white;
@@ -53,7 +53,7 @@ body {
 }
 
 
-/* ================= MAIN CONTAINER ================= */
+/*  MAIN CONTAINER  */
 
 .container {
     width: 92%;
@@ -62,7 +62,7 @@ body {
 }
 
 
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 
 .page-section {
     background: white;
@@ -86,7 +86,7 @@ body {
 }
 
 
-/* ================= STATISTICS ================= */
+/*  STATISTICS */
 
 .stats {
     display: grid;
@@ -116,7 +116,7 @@ body {
 }
 
 
-/* ================= SECTION HEADER ================= */
+/*  SECTION HEADER  */
 
 .section-header {
     display: flex;
@@ -126,7 +126,7 @@ body {
 }
 
 
-/* ================= BUTTON ================= */
+/* BUTTON  */
 
 .add-btn {
     border: none;
@@ -145,7 +145,7 @@ body {
 }
 
 
-/* ================= FORM ================= */
+/*  FORM */
 
 .form-box {
     background: #f3f8fa;
@@ -176,7 +176,7 @@ body {
 }
 
 
-/* ================= LIST TITLE ================= */
+/*  LIST TITLE  */
 
 .list-title {
     color: #087f8c;
@@ -184,7 +184,7 @@ body {
 }
 
 
-/* ================= TABLE ================= */
+/*  TABLE  */
 
 .table-container {
     overflow-x: auto;
@@ -215,7 +215,7 @@ tbody tr:hover {
 }
 
 
-/* ================= DELETE BUTTON ================= */
+/*  DELETE BUTTON  */
 
 .delete-btn {
     border: none;
@@ -231,7 +231,7 @@ tbody tr:hover {
 }
 
 
-/* ================= MOBILE ================= */
+/*  MOBILE  */
 
 @media (max-width: 900px) {
 
